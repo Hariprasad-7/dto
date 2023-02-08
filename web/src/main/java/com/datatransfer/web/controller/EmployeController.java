@@ -8,6 +8,8 @@ import com.datatransfer.web.repository.EmployeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class EmployeController {
 
@@ -31,10 +33,16 @@ public class EmployeController {
     }
 
     @GetMapping("/get/{id}")
-    public EmployeeDto getEmployees(@PathVariable int id){
+    public EmployeeDto getEmployees(@PathVariable int id) {
 
-       Employee employee=  employeRepository.findById(id).get();
-       return employeResponseDto.entityToDto(employee);
+        Employee employee = employeRepository.findById(id).get();
+        return employeResponseDto.entityToDto(employee);
+    }
+
+    @GetMapping("/getAll")
+       public List<Employee> getAllEmployees(){
+           return employeRepository.findAll();
+
 
 
 
